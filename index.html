@@ -1,112 +1,191 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta
-      name="viewport"
-      content=""
-      width="device-width,"
-      initial-scale="1.0"
-    />
-    <title>Weather App</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="card">
-      <div class="search">
-        <input type="text" placeholder="enter city name" spellcheck="false">
-        <button><img src="images/search.png"></button>
-      </div>
-      <div class="error">
-         <p>Invalid city name</p>
-      </div>
-      <div class="weather">
-        <img src="images/rain.png" class="weather-icon">
-        <h1 class="temp">22°c</h1>
-        <h2 class="city">New York</h2>
-        <div class="details">
-          <div class="col">
-            <img src="images/humidity.png">
-            <div>
-              <p class="humidity">50%</p>
-              <p>Humidity</p>
-            </div>
-          </div>
-          <div class="col">
-            <img src="images/wind.png">
-            <div>
-              <p class="wind">15km/h</p>
-              <p>Wind Speed</p>
-            </div>
+
+<head>
+  <meta name="viewport" content="" width="device-width," initial-scale="1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="card">
+    <div class="search">
+      <input type="text" placeholder="enter city name" spellcheck="false">
+      <button><img src="images/search.png"></button>
+    </div>
+    <div class="error">
+      <p>Invalid city name</p>
+    </div>
+    <div class="weather">
+      <img class="weather-icon">
+      <h1 class="temp"></h1>
+      <h2 class="city"></h2>
+      <div class="details">
+        <div class="col">
+          <img src="images/humidity.png">
+          <div>
+            <p class="humidity"></p>
+            <p>Humidity</p>
           </div>
         </div>
-      </h1>
+        <div class="col">
+          <img src="images/wind.png">
+          <div>
+            <p class="wind"></p>
+            <p>Wind Speed</p>
+          </div>
+        </div>
       </div>
-    
     </div>
+  </div>
+
+  <div class="parent">
+  <div class="child">
+  <div class="card_chicago">
+    <div class="error_chicago">
+      <p>Invalid city name</p>
+    </div>
+    <div class="weather_chicago">
+      <img class="weather-icon_chicago">
+      <h1 class="temp_chicago"></h1>
+      <h2 class="city_chicago"></h2>
+      <div class="details_chicago">
+        <div class="col_chicago">
+          <img src="images/humidity.png">
+          <div>
+            <p class="humidity_chicago"></p>
+            <p>Humidity</p>
+          </div>
+        </div>
+        <div class="col_chicago">
+          <img src="images/wind.png">
+          <div>
+            <p class="wind_chicago"></p>
+            <p>Wind Speed</p>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  </div>
 
-<script>
+  <div class="child">
+  <div class="card_chicago">
+    <div class="error_chicago">
+      <p>Invalid city name</p>
+    </div>
+    <div class="weather_chicago">
+      <img class="weather-icon_chicago">
+      <h1 class="temp_chicago"></h1>
+      <h2 class="city_chicago"></h2>
+      <div class="details_chicago">
+        <div class="col_chicago">
+          <img src="images/humidity.png">
+          <div>
+            <p class="humidity_chicago"></p>
+            <p>Humidity</p>
+          </div>
+        </div>
+        <div class="col_chicago">
+          <img src="images/wind.png">
+          <div>
+            <p class="wind_chicago"></p>
+            <p>Wind Speed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
 
-  const apiKey = "917257935c7d11579613acd1a10dd6a2";
-  const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+  <script>
+    const apiKey = "917257935c7d11579613acd1a10dd6a2";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-  const searchBox = document.querySelector(".search input");
-  const searchBtn = document.querySelector(".search button");
-  const weatherIcon = document.querySelector(".weather-icon");
+    const searchBox = document.querySelector(".search input");
+    const searchBtn = document.querySelector(".search button");
+    const weatherIcon = document.querySelector(".weather-icon");
 
-  async function checkWeather(city){
-     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-     
-     if(response.status == 404){
+    async function checkWeather(city) {
+      const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+      console.log("response", response)
+
+      if (response.status == 404) {
         document.querySelector(".error").style.display = "block";
         document.querySelector(".weather").style.display = "none";
-      }else{
-      var data = await response.json();
+      } else {
+        var data = await response.json();
 
-document.querySelector(".city").innerHTML = data.name;
-document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
-document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
 
-if(data.weather[0].main == "Clouds"){
-  weatherIcon.src = "images/clouds.png";
-}
-else if(data.weather[0].main == "Clear"){
-  weatherIcon.src = "images/clear.png";
-}
-else if(data.weather[0].main == "Rain"){
-  weatherIcon.src = "images/rain.png";
+        if (data.weather[0].main == "Clouds") {
+          weatherIcon.src = "images/clouds.png";
+        }
+        else if (data.weather[0].main == "Clear") {
+          weatherIcon.src = "images/clear.png";
+        }
+        else if (data.weather[0].main == "Rain") {
+          weatherIcon.src = "images/rain.png";
 
-}
-else if(data.weather[0].main == "Drizzle"){
-  weatherIcon.src = "images/drizzle.png";
-}
-else if(data.weather[0].main == "Mist"){
-  weatherIcon.src = "images/mist.png";
-
-}
-
-document.querySelector(".weather").style.display = "block";
-document.querySelector(".error").style.display = "none";
-
-
-
-    
+        }
+        else if (data.weather[0].main == "Drizzle") {
+          weatherIcon.src = "images/drizzle.png";
+        }
+        else if (data.weather[0].main == "Mist") {
+          weatherIcon.src = "images/mist.png";
+        }
+        document.querySelector(".weather").style.display = "block";
+        document.querySelector(".error").style.display = "none";
+      }
     }
 
+    async function checkWeatherChicago(city) {
+      const weatherIconChicago = document.querySelector(".weather-icon_chicago");
+      const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-    
+      if (response.status == 404) {
+        document.querySelector(".error_chicago").style.display = "block";
+        document.querySelector(".weather_chicago").style.display = "none";
+      } else {
+        var data = await response.json();
 
+        document.querySelector(".city_chicago").innerHTML = data.name;
+        document.querySelector(".temp_chicago").innerHTML = Math.round(data.main.temp) + "°c";
+        document.querySelector(".humidity_chicago").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind_chicago").innerHTML = data.wind.speed + "km/h";
+
+        if (data.weather[0].main == "Clouds") {
+          weatherIconChicago.src = "images/clouds.png";
+        }
+        else if (data.weather[0].main == "Clear") {
+          weatherIconChicago.src = "images/clear.png";
+        }
+        else if (data.weather[0].main == "Rain") {
+          weatherIconChicago.src = "images/rain.png";
+
+        }
+        else if (data.weather[0].main == "Drizzle") {
+          weatherIconChicago.src = "images/drizzle.png";
+        }
+        else if (data.weather[0].main == "Mist") {
+          weatherIconChicago.src = "images/mist.png";
+        }
+        document.querySelector(".weather_chicago").style.display = "block";
+        document.querySelector(".error_chicago").style.display = "none";
+      }
     }
 
-  
-searchBtn.addEventListener("click", ()=>{
-  checkWeather(searchBox.value);
-})
-
-checkWeather();
-</script>
+    searchBtn.addEventListener("click", () => {
+      checkWeather(searchBox.value);
+    })
+    checkWeatherChicago("chicago");
+  </script>
 
 </body>
+
 </html>
